@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct ContentView: View {
+   @State var showExchangeInfo:Bool = false
+   @State var leftAmount = ""
+    @State var rightAmount = ""
+    
     var body: some View {
         ZStack{
             //background Image
@@ -44,11 +48,12 @@ struct ContentView: View {
                             Text("Silver Piece")
                                 .font(.headline)
                                 .foregroundStyle(.white)
-                        }
+                        }.padding(.bottom, -5)
                         
                         //TextField
-                        Text("TextField")
-                            .foregroundStyle(.white)
+                        TextField("Amount", text: $leftAmount)
+                            .textFieldStyle(.roundedBorder)
+ 
                     }
                     
                     //equal Sign
@@ -71,21 +76,30 @@ struct ContentView: View {
                                 .resizable()
                                 .scaledToFit()
                                 .frame(height: 33)
-                        }
-                        Text("TextField")
-                            .foregroundStyle(.white)
+                        }.padding(.bottom,-5)
+                        TextField("Amount", text: $rightAmount)
+                            .textFieldStyle(.roundedBorder)
+                            .multilineTextAlignment(.trailing)
                     }
-                }
+                }.padding()
+                    .background(.black.opacity(0.5))
+                    .clipShape(.capsule)
                 Spacer()
                 
                 //Button
-                Button{
+                HStack {
+                    Spacer()
+                    Button{
+                        showExchangeInfo.toggle()
+                        print("ShowExchangeInfo Value: \(showExchangeInfo)")
+                        
+                    }
+                label:{
+                        Image(systemName: "info.circle.fill")
+                            .font(.largeTitle)
+                            .foregroundStyle(.white)
+                }.padding(.trailing)
                     
-                }
-            label:{
-                    Image(systemName: "info.circle.fill")
-                        .font(.largeTitle)
-                        .foregroundStyle(.white)
                 }
             }
             //.border(.blue)

@@ -99,6 +99,9 @@ struct ContentView: View {
                             .font(.largeTitle)
                             .foregroundStyle(.white)
                 }.padding(.trailing)
+                        .sheet(isPresented: $showExchangeInfo, content: {
+                            ExchangeInfo()
+                        })
                     
                 }
             }
